@@ -1,1 +1,12 @@
 $primary-color: #bb1005;
+
+@mixin size($width, $height: null) {
+    width: $width;
+    
+    @if $height != null {
+        height: $height
+    }
+    @else {
+        height: $width
+    }
+}

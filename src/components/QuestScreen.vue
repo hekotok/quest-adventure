@@ -9,11 +9,17 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/styles/variables.scss';
 
 .quest {
+    @include size(50%, 90%);
+
+    position: absolute;
     background: $primary-color;
     border-radius: 12px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
 }
 </style>
