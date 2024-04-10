@@ -1,12 +1,12 @@
 <template>
     <main class="quest">
         <img
-            src="@/assets/locations/start.png"
+            :src="imgPath"
             alt="location image"
             class="location"
         />
         <section class="description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit cumque placeat veniam aliquam totam quod, ullam accusamus itaque tempore voluptates commodi laboriosam ab consequuntur dolorem voluptatum deserunt blanditiis! Voluptatum, aliquam.
+            Куда пойти хочешь, добрый путник?
         </section>
         <section class="button-wrapper">
             <the-button
@@ -21,21 +21,23 @@
 </template>
 
 <script>
-import TheButton from './UI/TheButton'
+import TheButton from '@/components/UI/TheButton'
 
 export default {
     name: 'QuestScreen',
     components: { TheButton },
 
     setup() {
+        const imgPath = new URL('@/assets/img/locations/start.png', import.meta.url).href
         const buttons = [
             { text: 'Лес' },
-            { text: 'Лес' },
-            { text: 'Лес' },
-            { text: 'Лес' }
+            { text: 'Чилл' },
+            { text: 'Город' },
+            { text: 'Гробницы' },
+            { text: 'Выблядки' }
         ]
 
-        return { buttons }
+        return { buttons, imgPath }
     }
 }
 </script>

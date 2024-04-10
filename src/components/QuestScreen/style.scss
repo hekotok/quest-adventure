@@ -1,33 +1,47 @@
 @import '@/styles/variables.scss';
 
 .quest {
-    @include size(50%, 90%);
+    @include size(50%, calc(90% - 40px));
     @include flexbox(center, space-around, column);
 
     gap: 20px;
     position: absolute;
     background: $primary-color;
+    padding: 40px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 	
 	&, .description, .location {
-		border-radius: 12px;
+		border-radius: 12px
 	}
 
     .location {
-        @include size(70%, 40%);
+        @include size(100%, 40%);
     }
 
     .button-wrapper {
         @include flexbox(center, space-around, row, wrap);
 
-        gap: 20px
+        gap: 20px;
+        font-size: min(3vw, 3rem);
+
+        button {
+            flex: 1
+        }
     }
 
 	.description {
-		max-width: 70%;
 		background: $secondary-color;
-		padding: 10px
+		padding: 10px;
+        font-size: min(2.8vw, 2rem)
 	}
+
+    @media (max-width: 500px) {
+        padding: 20px;
+
+        .button-wrapper {
+            gap: 10px
+        }
+    }
 }

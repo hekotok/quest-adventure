@@ -15,5 +15,6 @@ export default {
 
 <style lang="scss" scoped>
 @import './styles/reset.css';
+@import './styles/fonts.css';
 @import './styles/variables.scss';
 </style>
