@@ -1,0 +1,33 @@
+@import '@/styles/variables.scss';
+
+.quest {
+    @include size(50%, 90%);
+    @include flexbox(center, space-around, column);
+
+    gap: 20px;
+    position: absolute;
+    background: $primary-color;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	
+	&, .description, .location {
+		border-radius: 12px;
+	}
+
+    .location {
+        @include size(70%, 40%);
+    }
+
+    .button-wrapper {
+        @include flexbox(center, space-around, row, wrap);
+
+        gap: 20px
+    }
+
+	.description {
+		max-width: 70%;
+		background: $secondary-color;
+		padding: 10px
+	}
+}

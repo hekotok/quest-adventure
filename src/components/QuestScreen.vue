@@ -1,25 +1,45 @@
 <template>
     <main class="quest">
+        <img
+            src="@/assets/locations/start.png"
+            alt="location image"
+            class="location"
+        />
+        <section class="description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit cumque placeat veniam aliquam totam quod, ullam accusamus itaque tempore voluptates commodi laboriosam ab consequuntur dolorem voluptatum deserunt blanditiis! Voluptatum, aliquam.
+        </section>
+        <section class="button-wrapper">
+            <the-button
+                v-for="button in buttons"
+                :key="button.text"
+                type="button"
+            >
+                {{ button.text }}
+            </the-button>
+        </section>
     </main>
 </template>
 
 <script>
+import TheButton from './UI/TheButton'
+
 export default {
-    name: 'QuestScreen'
+    name: 'QuestScreen',
+    components: { TheButton },
+
+    setup() {
+        const buttons = [
+            { text: 'Лес' },
+            { text: 'Лес' },
+            { text: 'Лес' },
+            { text: 'Лес' }
+        ]
+
+        return { buttons }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/variables.scss';
-
-.quest {
-    @include size(50%, 90%);
-
-    position: absolute;
-    background: $primary-color;
-    border-radius: 12px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%)
-}
+@import './style.scss'
 </style>

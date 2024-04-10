@@ -1,4 +1,6 @@
-$primary-color: #bb1005;
+$primary-color: #7d5e3c;
+$secondary-color: #ead39c;
+$border-color: #b51d0a;
 
 @mixin size($width, $height: null) {
     width: $width;
@@ -9,4 +11,12 @@ $primary-color: #bb1005;
     @else {
         height: $width
     }
+}
+
+@mixin flexbox($align: center, $justify: center, $direction: row, $wrap: nowrap) {
+	display: flex;
+	align-items: $align;
+	justify-content: $justify;
+	flex-direction: $direction;
+	flex-wrap: $wrap
 }
