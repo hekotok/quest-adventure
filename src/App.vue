@@ -1,15 +1,15 @@
 <template>
     <quest-screen />
-    <!-- <settings-button></settings-button>
-        <inventory-items></inventory-items> -->
+    <inventory-items />
 </template>
 
 <script>
 import QuestScreen from './components/QuestScreen'
+import InventoryItems from './components/InventoryItems'
 
 export default {
     name: 'QuestAdventure',
-    components: { QuestScreen }
+    components: { QuestScreen, InventoryItems }
 }
 </script>
 

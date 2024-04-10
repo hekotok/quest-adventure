@@ -4,6 +4,19 @@
     </button>
 </template>
 
+<script>
+export default {
+    name: 'TheButton',
+
+    props: {
+        imgClass: {
+            type: String,
+            default: null
+        }
+    }
+}
+</script>
+
 <style lang="scss" scoped>
 @import '@/styles/variables.scss';
 
@@ -15,7 +28,7 @@ button {
 	transition: .3s;
 
 	&:hover {
-		transform: scale(1.15);
+		transform: scale(1.15)
 	}
 }
 </style>

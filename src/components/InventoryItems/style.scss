@@ -1,0 +1,23 @@
+@import '@/styles/variables.scss';
+
+.inventory {
+	@include img-list(20px, '/inventory', 'money' 'knifes');
+
+	position: absolute;
+    padding: 16px;
+    top: 20px;
+    left: 20px;
+
+	background: $secondary-color;
+	border-radius: 12px;
+	font-size: min(4.5vw, 1.5rem);
+
+	.inventory-item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		span {
+			display: block
+		}
+	}
+}

@@ -20,3 +20,17 @@ $border-color: #b51d0a;
 	flex-direction: $direction;
 	flex-wrap: $wrap
 }
+
+@mixin img($path) {
+	background: url($path) center/contain no-repeat
+}
+
+@mixin img-list($size, $path, $class-names) {
+	@each $class-name in $class-names {
+
+		.#{$class-name}--img {
+			@include size($size);
+			@include img('@/assets/img#{$path}/#{$class-name}.svg')
+		}
+	}
+}
