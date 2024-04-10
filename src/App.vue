@@ -1,9 +1,17 @@
 <template>
-    <main></main>
+    <quest-screen class="quest" />
+    <!-- <settings-button></settings-button>
+        <inventory-items></inventory-items> -->
 </template>
 
 <script>
+import QuestScreen from './components/QuestScreen'
+
 export default {
-    name: 'QuestAdventure'
+    name: 'QuestAdventure',
+    components: { QuestScreen }
 }
 </script>
+
+<style lang="scss">
+</style>
