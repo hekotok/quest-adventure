@@ -1,5 +1,9 @@
 @import '@/styles/variables.scss';
 
+.hide-description:disabled {
+    cursor:auto
+}
+
 .quest {
     @include size(50%, 90%);
     @include flexbox(center, space-around, column);
@@ -36,11 +40,39 @@
         padding: 10px;
         text-align: center;
         width: 100%;
-        font-size: min(2.8vw, 2rem)
+        font-size: clamp(1.15rem, 2vw, 2rem)
 	}
 
-    @media (max-width: 500px) {
+    @include img-list(36px, '/menu', home suicide);
+
+    .home--img, .suicide--img {
+        position: absolute;
+        top: 16px;
+        transition: .3s;
+    }
+
+    .home--img {
+        left: 16px;
+
+        &:hover {
+            background: url(@/assets/img/menu/home-active.svg) center/contain no-repeat
+        }
+    }
+
+    .suicide--img {
+        right: 16px;
+        transform-origin:  bottom;
+
+        &:hover {
+            transform: rotate(-30deg)
+        }
+    }
+
+    @media (max-width: 600px) {
+        @include size(100%);
+
         padding: 20px;
+        border-radius: 0;
 
         .button-wrapper {
             gap: 10px
