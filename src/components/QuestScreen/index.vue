@@ -32,7 +32,7 @@
                 <button
                     type="button"
                     class="home--img"
-                    @click="backToStart"
+                    @click="backToStart(false)"
                 ></button>
                 <button
                     type="button"
@@ -59,8 +59,8 @@ export default {
         const buttons = ref(start.buttons)
 
         const isDescription = ref(true)
-        const description = ref(startDescription)
-        let locationText = start.text
+        const description = ref('')
+        let locationText = ''
 
         const updateLocation = (adventure, isLocationDescription, locationDescription) => {
             const location = adventure()
@@ -70,7 +70,7 @@ export default {
                 buttons.value = location.buttons
 
                 isDescription.value = isLocationDescription
-                if (isDescription.value) {
+                if (isLocationDescription) {
                     description.value = locationDescription
                     locationText = location.text
                 }
@@ -78,7 +78,7 @@ export default {
                     description.value = location.text
             }
             else
-                backToStart()
+                backToStart(false)
         }
 
         const hideDescription = () => {
@@ -86,11 +86,19 @@ export default {
             description.value = locationText
         }
 
-        const backToStart = () => {
-            isDescription.value = false
-            imgSrc.value = start.imgSrc
-            buttons.value = start.buttons
-            description.value = start.text
+        const backToStart = isInit => {
+            const startInfo = start()
+
+            imgSrc.value = startInfo.imgSrc
+            buttons.value = startInfo.buttons
+
+            isDescription.value = isInit
+            if (isInit) {
+                description.value = startDescription
+                locationText = startInfo.text
+            }
+            else
+                description.value = startInfo.text
         }
 
         const suicide = () => {
@@ -101,11 +109,14 @@ export default {
             description.value = suicideDescription
         }
 
+        backToStart(true)
+
         return {
             buttons,
             imgSrc,
             description,
             isDescription,
+
             updateLocation,
             hideDescription,
             backToStart,
