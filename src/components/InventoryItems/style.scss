@@ -22,3 +22,19 @@
 		}
 	}
 }
+
+.move-swap {
+    &-enter-active, &-leave-active, &-leave-active, &-enter-active {
+        transition: transform .7s ease-in-out, opacity .9s ease
+    }
+
+    &-enter-from, &-leave-to {
+        transform: translateY(-100%);
+        opacity: 0
+    }	  
+
+    &-enter-to, &-leave-from {
+        transform: translateY(100%);
+        opacity: 1
+    }
+}

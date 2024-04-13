@@ -15,7 +15,7 @@
                 {{ description }}
             </section>
 
-            <Transition name="move">
+            <transition name="move">
                 <section
                     v-if="!isDescription"
                     class="button-wrapper"
@@ -30,7 +30,7 @@
                         {{ button.text }}
                     </the-button>
                 </section>
-            </Transition>
+            </transition>
 
             <TransitionGroup name="fade">
                 <template v-if="!isDescription">

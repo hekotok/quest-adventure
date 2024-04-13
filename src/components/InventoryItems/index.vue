@@ -4,20 +4,22 @@
         @mouseover="showItems = true"
         @mouseleave="showItems = false"
     >
-        <ul v-if="showItems">
-            <li
-                v-for="(value, itemName) in inventory"
-                :key="itemName"
-                class="inventory-item"
-            >
-                <span :class="`${itemName}--img`"></span>
-                <p>{{ value }}</p>
-            </li>
-        </ul>
-        <div v-else class="inventory-item">
-            <span class="money--img"></span>
-            <p>{{ inventory.money }}</p>
-        </div>
+        <transition name="move-swap">
+            <ul v-if="showItems">
+                <li
+                    v-for="(value, itemName) in inventory"
+                    :key="itemName"
+                    class="inventory-item"
+                >
+                    <span :class="`${itemName}--img`"></span>
+                    <p>{{ value }}</p>
+                </li>
+            </ul>
+            <div v-else class="inventory-item">
+                <span class="money--img"></span>
+                <p>{{ inventory.money }}</p>
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -30,7 +32,10 @@ export default {
     setup() {
         const inventory = {
             money: 500,
-            knifes: 2
+            knifes: 2,
+            knifes1: 2,
+            knifes2: 2,
+            knifes3: 2
         }
 
         const showItems = ref(false)
