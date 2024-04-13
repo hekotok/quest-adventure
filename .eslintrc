@@ -44,6 +44,7 @@
         "vue/html-button-has-type": [ "error", { "button": true, "submit": false, "reset": true } ],
         "vue/new-line-between-multi-line-property": [ "error", { "minLineOfMultilineProperty": 2 } ],
         "vue/no-potential-component-option-typo": [ "error", { "presets": [ "all" ], "custom": [] } ],
+        "vue/multi-word-component-names": ["error", {"ignores": ["index"] }],
         "vue/html-self-closing": [ "error", { "html": { "void": "always", "normal": "never", "component": "always" }, "svg": "always", "math": "always" } ],
         "vue/attributes-order": [ "error", {
             "order": [

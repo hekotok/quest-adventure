@@ -16,7 +16,7 @@ const events = [
         text: 'Гуляя по лесу ты заметил спящего человека, но подойдя поближе ты понял, что он мертв. Думаешь что же там блестит в нём? Это не украшения, це нож. Возможно он поможет тебе выжить, если ты решишь его взять конечно',
         buttons: [
             { text: 'Взять', click: () => getKnife(true) },
-            { text: 'Не брать', click: () => getKnife(false) }
+            { text: 'Отказываюсь', click: () => getKnife(false) }
         ]
     },
     {
@@ -30,7 +30,7 @@ const events = [
     {
         imgSrc: new URL('@/assets/img/locations/forest/money.png', import.meta.url).href,
         text: 'Вау, в твоей жизни бывают радости. Ты нашел пару монет. Мб этого хватит на дошик',
-        buttons: [ { text: 'Озолотиться', click: () => getMoney() } ]
+        buttons: [ { text: 'Озолотиться', click: getMoney } ]
     }
 ]
 

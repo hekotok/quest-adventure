@@ -15,6 +15,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: .5s;
 	
 	&, .description, .location {
 		border-radius: 12px
@@ -77,5 +78,31 @@
         .button-wrapper {
             gap: 10px
         }
+    }
+}
+
+.fade {
+    &-enter-active, &-leave-active {
+        transition: opacity .7s ease
+    }
+    
+    &-enter-from, &-leave-to {
+        opacity: 0
+    }
+}
+
+.move {
+    &-enter-active, &-leave-active {
+        transition: transform .7s ease, opacity .7s ease;
+    }
+
+    &-enter-from, &-leave-to {
+        transform: translateY(100%);
+        opacity: 0
+    }
+
+    &-enter-to, &-leave-from {
+        transform: translateY(0);
+        opacity: 1
     }
 }
