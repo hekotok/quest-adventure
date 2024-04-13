@@ -1,11 +1,11 @@
 <template>
     <div
         class="inventory"
-        @mouseover="showItems = true"
-        @mouseleave="showItems = false"
+        @mouseover="isShowItems = true"
+        @mouseleave="isShowItems = false"
     >
         <transition name="move-swap">
-            <ul v-if="showItems">
+            <ul v-if="isShowItems">
                 <li
                     v-for="(value, itemName) in inventory"
                     :key="itemName"
@@ -25,22 +25,18 @@
 
 <script>
 import { ref } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
     name: 'InventoryItems',
 
     setup() {
-        const inventory = {
-            money: 500,
-            knifes: 2,
-            knifes1: 2,
-            knifes2: 2,
-            knifes3: 2
-        }
+        const store = useStore()
 
-        const showItems = ref(false)
+        const inventory = store.state.inventory
+        const isShowItems = ref(false)
 
-        return { inventory, showItems }
+        return { inventory, isShowItems }
     }
 }
 </script>
