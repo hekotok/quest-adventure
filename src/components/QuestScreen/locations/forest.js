@@ -2,7 +2,7 @@ import store from '@/store'
 import { getRandom } from '@/utils/utils'
 import { dead } from './start'
 
-let forestDepth = 0 //riches logic
+let forestDepth = 0
 
 const getKnife = isGetKnife => {
     store.state.inventory.knifes = +isGetKnife
@@ -10,21 +10,35 @@ const getKnife = isGetKnife => {
     return [ events[3], events[1] ][+(getRandom(3) === 2)]
 }
 
-const getMoney = () => {
+const getMoney = isProbabilityBandits => {
     store.state.inventory.money += getRandom(100, 10)
 
-    return [ events[3], events[1] ][getRandom(2)]
+    return isProbabilityBandits ? [ events[3], events[1] ][getRandom(2)] : events[3]
 }
 
 const bandits = action => {
-    return [ dead, events[5] ][+!!getRandom(action === 'run' ? 3 : 2)]
+    if (action === 'fight') {
+        if (store.state.inventory.knifes > 0 && action === 'fight') {
+            store.state.inventory.knifes--
+            if (getRandom(10) > 1)
+                return events[6]
+        }
+        else if (getRandom(2))
+            return events[5]
+    }
+    else if (getRandom(3) > 0)
+        return events[5]
+
+    return dead
 }
 
 const getRich = () => {
-    console.log('aboba')
+    store.state.inventory.riches.forest.isHave = true
 }
 
-export const forest = () => forestDepth < 50 ? events[getRandom(3)] : events[4] //надо добавить проверку на то что нет сокровища
+export const forest = () => forestDepth < 10 || store.state.inventory.riches.forest.isHave && !!getRandom(4)
+    ? events[getRandom(3)]
+    : events[4]
 
 export const forestDescription = 'Добро пожаловать в лес. Не надейся - он не магический, ты тут не встретишь феечку или принца на белом коне, а вот столкнуться с местной гопотой вполне можешь'
 
@@ -51,7 +65,7 @@ const events = [
         imgSrc: new URL('@/assets/img/locations/forest/money.png', import.meta.url).href,
         text: 'Вау, в твоей жизни бывают радости. Ты нашел пару монет. Мб этого хватит на дошик',
 
-        buttons: [ { text: 'Озолотиться', click: getMoney } ]
+        buttons: [ { text: 'Озолотиться', click: () => getMoney(true) } ]
     },
     {
         imgSrc: new URL('@/assets/img/locations/forest/forest.png', import.meta.url).href,
@@ -66,7 +80,7 @@ const events = [
         imgSrc: new URL('@/assets/img/locations/forest/forest.png', import.meta.url).href,
         text: 'Ебаный абобаный, ежевика светится',
 
-        buttons: [ { text: 'Я должен сделать больше', click: getRich() } ]
+        buttons: [ { text: 'Моя прелесть', click: () => getRich() } ]
     },
     {
         imgSrc: new URL('@/assets/img/locations/forest/forest.png', import.meta.url).href,
@@ -75,6 +89,15 @@ const events = [
         buttons: [
             { text: 'Продолжить свой нелёгкий ', click: forest },
             { text: 'По съёбам отсюда', click: () => {} }
+        ]
+    },
+    {
+        imgSrc: new URL('@/assets/img/locations/forest/bloody_gold.png', import.meta.url).href,
+        text: 'Очешуеть, ты зарубил их!? Убийца! Но у одного из них висит мешок с золотишком, что они вестимо награбили. Возьмёшь ли ты эти грязные деньги?',
+
+        buttons: [
+            { text: 'Озолотиться', click: () => getMoney(false) },
+            { text: 'Не брать грех на душу', click: () => forest }
         ]
     }
 ]

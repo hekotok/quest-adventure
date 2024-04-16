@@ -26,9 +26,32 @@ button {
 	padding: 20px;
 	font-weight: bold;
 	transition: .3s;
+    border: 6px outset transparent;
 
 	&:hover {
-		transform: scale(1.15)
+		background-color: $primary-color;
+        border: 6px outset $secondary-color;
+        color: $secondary-color;
+        animation: glimmer 3s infinite
 	}
+}
+
+@keyframes glimmer {
+    25% {
+        opacity: 1
+    }
+    40% {
+        color: transparent
+    }
+    50% {
+        opacity: 0;
+        border-radius: 0
+    }
+    60% {
+        color: transparent
+    }
+    75% {
+        opacity: 1
+    }
 }
 </style>

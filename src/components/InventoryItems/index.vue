@@ -11,8 +11,10 @@
                     :key="itemName"
                     class="inventory-item"
                 >
-                    <span :class="`${itemName}--img`"></span>
-                    <p>{{ value }}</p>
+                    <template v-if="itemName !== 'riches'">
+                        <span :class="`${itemName}--img`"></span>
+                        <p>{{ value }}</p>
+                    </template>
                 </li>
             </ul>
             <div v-else class="inventory-item">
