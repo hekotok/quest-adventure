@@ -37,21 +37,15 @@ button {
 }
 
 @keyframes glimmer {
-    25% {
+    25%, 75% {
         opacity: 1
     }
-    40% {
-        color: transparent
+    35%, 65% {
+        color: rgba($secondary-color, .3)
     }
     50% {
         opacity: 0;
         border-radius: 0
-    }
-    60% {
-        color: transparent
-    }
-    75% {
-        opacity: 1
     }
 }
 </style>

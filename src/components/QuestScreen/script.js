@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 import TheButton from '@/components/UI/TheButton'
 import { start, startDescription, suicideDescription, dead } from './locations/start'
@@ -9,10 +9,13 @@ export default {
 
     setup () {
         const imgSrc = ref(start.imgSrc)
-        const buttons = ref(start.buttons)
+        const isShowImg = ref(true)
 
         const isDescription = ref(true)
         const description = ref(startDescription)
+        const isShowDescription = ref(true)
+
+        const buttons = ref(start.buttons)
         let locationText = start.text
 
         const updateLocation = button => {
@@ -60,11 +63,26 @@ export default {
             start.buttons.forEach((_, idx) => start.buttons[idx].isDescription = true)
         }
 
+        watch(imgSrc, () => {
+            isShowImg.value = false
+            setTimeout(() => isShowImg.value = true, 500)
+        })
+        watch(description, () => {
+            watch(description, () => {
+                if (!isDescription.value) {
+                    isShowDescription.value = false
+                    setTimeout(() => isShowDescription.value = true, 500)
+                }
+            })
+        })
+
         return {
             buttons,
             imgSrc,
             description,
             isDescription,
+            isShowImg,
+            isShowDescription,
 
             updateLocation,
             hideDescription,

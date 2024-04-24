@@ -6,16 +6,21 @@
         @click="hideDescription"
     >
         <main class="quest">
-            <img
-                :src="imgSrc"
-                alt="location image"
-                class="location"
-            />
-            <section class="description">
-                {{ description }}
-            </section>
+            <transition name="fade">
+                <img
+                    v-if="isShowImg"
+                    :src="imgSrc"
+                    alt="location image"
+                    class="location"
+                />
+            </transition>
+            <transition name="fade">
+                <section v-if="isShowDescription" class="description">
+                    {{ description }}
+                </section>
+            </transition>
 
-            <transition name="move">
+            <transition name="fade">
                 <section
                     v-if="!isDescription"
                     class="button-wrapper"
